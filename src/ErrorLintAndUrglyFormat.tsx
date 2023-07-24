@@ -1,19 +1,14 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 
 function App() {
-    const a = 10;
-    
-    const b     = 12;
-    const c     = 12;
-  
-  
-    return (
+  const a = 10;
+
+  return (
     <div className="App">
       <header className="App-header">
         <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+          Edit <code>src/App.tsx</code> and save to reload. {a}
         </p>
         <a
           className="App-link"
