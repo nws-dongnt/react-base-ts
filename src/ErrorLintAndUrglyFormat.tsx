@@ -6,6 +6,7 @@ function App() {
     const a = 10;
     
     const b     = 12;
+    const c     = 12;
   
   
     return (

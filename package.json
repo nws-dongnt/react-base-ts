@@ -27,7 +27,7 @@
     "pre-commit": "lint-staged"
   },
   "lint-staged": {
-    "*.ts": [
+    ".js,.jsx,.ts,.tsx .": [
       "npm run lint",
       "npm run pretty",
       "git add ."
