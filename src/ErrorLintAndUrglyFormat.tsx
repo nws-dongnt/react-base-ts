@@ -4,7 +4,11 @@ import "./App.css";
 
 function App() {
     const a = 10;
-  return (
+    
+    const b     = 12;
+  
+  
+    return (
     <div className="App">
       <header className="App-header">
         <p>
