@@ -2,10 +2,10 @@ import { lazy, Suspense } from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 
 import MainLayout from "layouts/MainLayout";
+import NotFound from "pages/NotFound";
 
 const Home = lazy(() => import("pages/Home"));
 const About = lazy(() => import("pages/About"));
-const NotFound = lazy(() => import("pages/NotFound"));
 
 function Router() {
   return (
