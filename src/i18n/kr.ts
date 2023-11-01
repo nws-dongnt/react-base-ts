@@ -4,7 +4,7 @@ const navBar = {
   vi: "베트남어",
   en: "영어",
   home: "집",
-  about: "정보",
+  sample: "정보",
 };
 
 const kr = {

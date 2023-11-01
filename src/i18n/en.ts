@@ -4,7 +4,7 @@ const navBar = {
   vi: "Vietnamese",
   en: "English",
   home: "Home",
-  about: "About",
+  sample: "Sample",
 };
 
 const en = {

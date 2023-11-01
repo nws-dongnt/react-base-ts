@@ -4,7 +4,7 @@ const navBar = {
   kr: "Tiếng Hàn",
   en: "Tiếng Anh",
   home: "Trang chủ",
-  about: "Thông tin",
+  sample: "Mẫu",
 };
 
 const vi = {

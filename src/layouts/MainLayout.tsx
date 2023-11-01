@@ -12,6 +12,7 @@ import {
   MenuItem,
   Select,
   SelectChangeEvent,
+  Container,
 } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "reduxx";
 import Path from "route/Path";
@@ -85,8 +86,8 @@ export default function MainLayout() {
           <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
             &nbsp;
           </Typography>
-          <RLink to={Path.about}>
-            <h1>{t("navBar.about")}</h1>
+          <RLink to={Path.sample}>
+            <h1>{t("navBar.sample")}</h1>
           </RLink>
           <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
             &nbsp;
@@ -127,7 +128,9 @@ export default function MainLayout() {
           </div>
         </Toolbar>
       </AppBar>
-      <Outlet />
+      <Container maxWidth="xl">
+        <Outlet />
+      </Container>
     </BaseLayout>
   );
 }

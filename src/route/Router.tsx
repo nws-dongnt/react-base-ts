@@ -1,7 +1,8 @@
 import { lazy, Suspense } from "react";
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 
 import MainLayout from "layouts/MainLayout";
+import SampleLayout from "layouts/SampleLayout";
 import NotFound from "pages/NotFound";
 
 import Path from "./Path";
@@ -10,7 +11,7 @@ import AuthRoute from "./AuthRoute";
 
 const Login = lazy(() => import("pages/Login"));
 const Home = lazy(() => import("pages/Home"));
-const About = lazy(() => import("pages/About"));
+const ListExample = lazy(() => import("pages/ListExample"));
 
 function Router() {
   return (
@@ -36,14 +37,20 @@ function Router() {
                 </Suspense>
               }
             />
-            <Route
-              path={Path.about}
-              element={
-                <Suspense fallback={<h1>loading...</h1>}>
-                  <About />
-                </Suspense>
-              }
-            />
+            <Route element={<SampleLayout />}>
+              <Route
+                path={Path.sample}
+                element={<Navigate to={Path.listPageExample} replace />}
+              />
+              <Route
+                path={Path.listPageExample}
+                element={
+                  <Suspense fallback={<h1>loading...</h1>}>
+                    <ListExample />
+                  </Suspense>
+                }
+              />
+            </Route>
           </Route>
         </Route>
         <Route path="*" element={<NotFound />} />

@@ -8,6 +8,8 @@ export type UserType = {
 
 export type ListUserParams = {
   page: number;
+  pageSize: number;
+  searchKeyword: string;
 };
 
 export type UserListResponseType = {
