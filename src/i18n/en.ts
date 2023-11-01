@@ -1,5 +1,6 @@
 const navBar = {
   chooseLanguage: "Choose language",
+  kr: "Korean",
   vi: "Vietnamese",
   en: "English",
   home: "Home",

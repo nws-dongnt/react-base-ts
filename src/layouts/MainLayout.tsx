@@ -10,12 +10,15 @@ import {
   Box,
   Menu,
   MenuItem,
+  Select,
+  SelectChangeEvent,
 } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "reduxx";
 import Path from "route/Path";
 import { ExpandMore } from "@mui/icons-material";
 import { clearAuth } from "reduxx/authReducer";
 import RLink from "components/RLink";
+import i18n from "i18n";
 import BaseLayout from "./BaseLayout";
 
 export default function MainLayout() {
@@ -33,10 +36,9 @@ export default function MainLayout() {
     setAnchorAdminName(null);
   };
 
-  // TODO: use this if you want to handle multiple languages
-  // const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
-  //   i18n.changeLanguage(event.target.value);
-  // };
+  const handleChange = (event: SelectChangeEvent<string>) => {
+    i18n.changeLanguage(event.target.value);
+  };
 
   const handleLogout = () => {
     dispatch(clearAuth());
@@ -68,14 +70,23 @@ export default function MainLayout() {
           <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
             &nbsp;
           </Typography>
+          <Typography sx={{ pr: 1 }}>{t("navBar.chooseLanguage")}</Typography>
+          <Select value={i18n.language} onChange={handleChange}>
+            <MenuItem value="kr">{t("navBar.kr")}</MenuItem>
+            <MenuItem value="vi">{t("navBar.vi")}</MenuItem>
+            <MenuItem value="en">{t("navBar.en")}</MenuItem>
+          </Select>
+          <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
+            &nbsp;
+          </Typography>
           <RLink to={Path.home}>
-            <h1>{t("home")}</h1>
+            <h1>{t("navBar.home")}</h1>
           </RLink>
           <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
             &nbsp;
           </Typography>
           <RLink to={Path.about}>
-            <h1>{t("about")}</h1>
+            <h1>{t("navBar.about")}</h1>
           </RLink>
           <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
             &nbsp;

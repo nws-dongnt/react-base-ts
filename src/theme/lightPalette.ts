@@ -4,7 +4,7 @@ const lightPalette: PaletteOptions = {
   mode: "light",
   background: {
     default: "#1f1f1f",
-    paper: "#303135",
+    paper: "#a5b7ff",
   },
   primary: {
     main: "#fcd535",
