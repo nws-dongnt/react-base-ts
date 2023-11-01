@@ -1,42 +1,121 @@
-import React, { ChangeEvent } from "react";
-import { Outlet, Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import i18n from "i18n";
+import { APP_BAR_HEIGHT } from "utils/constant";
+import {
+  AppBar,
+  Button,
+  Toolbar,
+  Typography,
+  Box,
+  Menu,
+  MenuItem,
+} from "@mui/material";
+import { useAppDispatch, useAppSelector } from "reduxx";
+import Path from "route/Path";
+import { ExpandMore } from "@mui/icons-material";
+import { clearAuth } from "reduxx/authReducer";
+import RLink from "components/RLink";
 import BaseLayout from "./BaseLayout";
 
 export default function MainLayout() {
+  const { user } = useAppSelector((state) => state.auth);
   const { t } = useTranslation();
-  const { t: tNavBar } = useTranslation("translation", { keyPrefix: "navBar" });
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const [anchorAdminName, setAnchorAdminName] = useState<null | HTMLElement>();
 
-  const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    i18n.changeLanguage(event.target.value);
+  const handleAdminNameClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorAdminName(event.currentTarget);
+  };
+
+  const handleAdminNameMenuClose = () => {
+    setAnchorAdminName(null);
+  };
+
+  // TODO: use this if you want to handle multiple languages
+  // const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
+  //   i18n.changeLanguage(event.target.value);
+  // };
+
+  const handleLogout = () => {
+    dispatch(clearAuth());
+    navigate(Path.login);
   };
 
   return (
     <BaseLayout>
-      <div
-        style={{
-          display: "flex",
-          gap: 15,
-          justifyContent: "center",
-          alignItems: "center",
-          backgroundColor: "#282c34",
+      <AppBar
+        position="sticky"
+        color="inherit"
+        sx={{
+          borderRadius: 0,
+          boxShadow: "none",
+          height: APP_BAR_HEIGHT,
+          borderBottom: 1,
+          borderColor: "gray.200",
         }}
       >
-        <p>{t("navBar.chooseLanguage")}</p>
-        <div>
-          <select onChange={handleChange}>
-            <option value="vi">{t("navBar.vi")}</option>
-            <option value="en">{t("navBar.en")}</option>
-          </select>
-        </div>
-        <Link to="/">
-          <h1>{tNavBar("home")}</h1>
-        </Link>
-        <Link to="/about">
-          <h1>{tNavBar("about")}</h1>
-        </Link>
-      </div>
+        <Toolbar>
+          <Button
+            color="inherit"
+            sx={{ px: 0.5 }}
+            onClick={() => navigate(Path.home)}
+          >
+            <Box sx={{ width: 36, height: 36, mr: 0.5 }} />
+            LOGO
+          </Button>
+          <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
+            &nbsp;
+          </Typography>
+          <RLink to={Path.home}>
+            <h1>{t("home")}</h1>
+          </RLink>
+          <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
+            &nbsp;
+          </Typography>
+          <RLink to={Path.about}>
+            <h1>{t("about")}</h1>
+          </RLink>
+          <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
+            &nbsp;
+          </Typography>
+          <div>
+            <Button
+              id="basic-button"
+              aria-controls={anchorAdminName ? "basic-menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={anchorAdminName ? "true" : undefined}
+              onClick={handleAdminNameClick}
+              color={anchorAdminName ? "primary" : "inherit"}
+              endIcon={<ExpandMore />}
+              sx={{ ml: 2 }}
+            >
+              {user?.username}
+            </Button>
+            <Menu
+              id="basic-menu"
+              anchorEl={anchorAdminName}
+              open={!!anchorAdminName}
+              onClose={handleAdminNameMenuClose}
+              MenuListProps={{
+                "aria-labelledby": "basic-button",
+              }}
+            >
+              <MenuItem onClick={handleAdminNameMenuClose}>
+                <Button
+                  type="button"
+                  fullWidth
+                  variant="contained"
+                  onClick={() => handleLogout()}
+                >
+                  {t("Logout")}
+                </Button>
+              </MenuItem>
+            </Menu>
+          </div>
+        </Toolbar>
+      </AppBar>
       <Outlet />
     </BaseLayout>
   );

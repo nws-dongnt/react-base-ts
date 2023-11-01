@@ -1,7 +1,7 @@
 import { PaletteOptions } from "@mui/material";
 
 const lightPalette: PaletteOptions = {
-  mode: "dark",
+  mode: "light",
   background: {
     default: "#1f1f1f",
     paper: "#303135",
@@ -13,7 +13,7 @@ const lightPalette: PaletteOptions = {
     main: "#ff4d4f",
   },
   text: {
-    primary: "#ffffff",
+    primary: "#000000",
     secondary: "#E2E9F0",
     disabled: "#475569",
   },

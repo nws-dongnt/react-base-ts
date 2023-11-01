@@ -11,11 +11,13 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import authReducer from "./authReducer";
 import commonReducer from "./commonReducer";
 
-export const key = "react-base-redux";
+export const key = "no-won";
 
 const rootReducer = combineReducers({
+  auth: authReducer,
   common: commonReducer,
 });
 
@@ -23,7 +25,7 @@ const persistedReducer = persistReducer(
   {
     key,
     storage,
-    whitelist: ["common"],
+    whitelist: ["auth", "common"],
   },
   rootReducer,
 );
