@@ -29,7 +29,9 @@ export default function ListExample() {
     loading: true,
     users: [],
   });
-  const [keyword, setKeyword] = useState(searchParams.get("searchKeyword"));
+  const [keyword, setKeyword] = useState(
+    searchParams.get("searchKeyword") || "",
+  );
 
   /**
    * Search
