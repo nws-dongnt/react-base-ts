@@ -1,23 +1,36 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
-export type MemoType = {
-  value: string;
-};
-
-const initialState: { memo: MemoType } = {
-  memo: { value: "" },
+const initialState = {
+  drawer: {
+    open: false,
+  },
 };
 
 const slice = createSlice({
   name: "common-reducer",
   initialState,
   reducers: {
-    updateMemo: (state, action: PayloadAction<string>) => {
-      return { ...state, memo: { value: action.payload } };
+    openDrawer: (state) => {
+      return {
+        ...state,
+        drawer: {
+          ...state?.drawer,
+          open: true,
+        },
+      };
+    },
+    closeDrawer: (state) => {
+      return {
+        ...state,
+        drawer: {
+          ...state?.drawer,
+          open: false,
+        },
+      };
     },
   },
 });
 
-export const { updateMemo } = slice.actions;
+export const { openDrawer, closeDrawer } = slice.actions;
 
 export default slice.reducer;

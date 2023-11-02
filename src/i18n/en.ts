@@ -1,14 +1,15 @@
-const navBar = {
+const sidebar = {
   chooseLanguage: "Choose language",
   kr: "Korean",
   vi: "Vietnamese",
   en: "English",
   home: "Home",
   sample: "Sample",
+  listSample: "List example",
 };
 
 const en = {
-  navBar,
+  sidebar,
 };
 
 export default en;

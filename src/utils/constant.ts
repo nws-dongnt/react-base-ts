@@ -1,3 +1,2 @@
 export const APP_BAR_HEIGHT = 64;
-
-export const dummy = "";
+export const DRAWER_WIDTH = 144;

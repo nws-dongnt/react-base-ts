@@ -1,4 +1,4 @@
-const navBar = {
+const sidebar = {
   chooseLanguage: "Chọn ngôn ngữ:",
   vi: "Tiếng Việt",
   kr: "Tiếng Hàn",
@@ -8,7 +8,7 @@ const navBar = {
 };
 
 const vi = {
-  navBar,
+  sidebar,
 };
 
 export default vi;
